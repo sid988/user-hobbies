@@ -2,8 +2,8 @@
 A simple REST based endpoint to have CRUD operations around users and their related hobbies
 
 ## What do we need to run the service?
-- Docker
 - Node
+- MongoDb setup on local
 
 ## How to run the project?
 - Start the docker image for the database. We need to do this step only once.
