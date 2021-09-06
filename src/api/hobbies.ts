@@ -204,7 +204,7 @@ export const updateHobby = async (req: Request, res: Response, next: NextFunctio
             throw new Error(`User ${hobby.userId} does not exist`)
         }
         if (await hobbyExistsForOtherUser(hobby)) {
-            throw new Error(`Hobby '${hobby.name}' already exists for the new user ${hobby.userId}`)
+            throw new Error(`Hobby already exists for the new user ${hobby.userId}`)
         }
 
         const hobbyIsFound = await hobbyExistsForId(hobby)

@@ -40,7 +40,8 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
         return next(err)
     }
     res.status(statusCode)
-    res.write({ message })
+    res.json({ message })
+    res.end()
     console.log(`Error found: `, err)
 })
 
