@@ -1,0 +1,283 @@
+swagger: "2.0"
+info:
+  description: "This is a simple REST based service hosting a collection of endpoints dedicated towards users and their related hobbies"
+  version: "1.0.0"
+  title: "User-Hobbies"
+  termsOfService: "http://swagger.io/terms/"
+host: "localhost:8080"
+basePath: "/"
+tags:
+- name: "user"
+  description: "Operations about user"
+- name: "hobbies"
+  description: "User related hobbies"
+schemes:
+- "https"
+- "http"
+paths:
+  /users:
+    post:
+      tags:
+      - "user"
+      summary: "Add User"
+      description: "Adds a new user"
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "500":
+          description: "Internal Server Error"
+  /users/search:
+    post:
+      tags:
+      - "user"
+      summary: "Find Users"
+      description: "Finds all users matching the search query"
+      operationId: "getUsers"
+      parameters:
+      - in: "query"
+        name: "name"
+        description: "A pattern to represent the name of user"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        "500":
+          description: "Internal Server Error"
+  /user/{id}:
+    get:
+      tags:
+      - "user"
+      summary: "Get User"
+      description: "Finds a user on basis of user id"
+      operationId: "getUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "User Identification UUID"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+    patch:
+      tags:
+      - "user"
+      summary: "Update User"
+      description: "Update user record"
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "User Identification UUID"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete User"
+      description: "Delete user record"
+      operationId: "deleteUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "User Identification UUID"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+  /hobbies:
+    post:
+      tags:
+      - "hobbies"
+      summary: "Add Hobby"
+      description: "Adds a new hobby for the user"
+      operationId: "addHobby"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Hobby object"
+        required: true
+        schema:
+          $ref: "#/definitions/Hobby"
+      responses:
+        "500":
+          description: "Internal Server Error"
+  /hobbies/search:
+    post:
+      tags:
+      - "hobbies"
+      summary: "Find Hobbies"
+      description: "Finds all hobbies matching the search query"
+      operationId: "getHobbies"
+      parameters:
+      - in: "query"
+        name: "name"
+        description: "A pattern to represent the name of hobby"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "passionLevel"
+        description: "List all hobbies with passion level as one of the values, 'Low', 'Medium', 'High' or 'Very-High'"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "year"
+        description: "List all hobbies with the mentioned year"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "userId"
+        description: "List all hobbies for the user"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        "500":
+          description: "Internal Server Error"
+  /hobby/{id}:
+    get:
+      tags:
+      - "hobby"
+      summary: "Get Hobby"
+      description: "Finds a hobby on basis of id"
+      operationId: "getHobby"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Hobby Identification UUID"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+    patch:
+      tags:
+      - "hobby"
+      summary: "Update Hobby"
+      description: "Update hobby record"
+      operationId: "updateHobby"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Hobby Identification UUID"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The hobby object"
+        required: true
+        schema:
+          $ref: "#/definitions/Hobby"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+    delete:
+      tags:
+      - "hobby"
+      summary: "Delete Hobby"
+      description: "Delete hobby record"
+      operationId: "deleteHobby"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Hobby Identification UUID"
+        required: true
+        type: "string"
+      responses:
+        "404":
+          description: "Resource not found"
+        "500":
+          description: "Internal Server Error"
+    
+        
+definitions:
+  Hobby:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        description: "Name of the hobby"
+      passsionLevel:
+        type: "string"
+        description: "The level of passion for the hobby. It can be one of the below values \n - 'low': once a month\n - 'medium': once every week \n - 'high': it is part of your life"
+      year:
+        type: "integer"
+        format: "int64"
+        description: "The year when the user started with the hobby"
+    xml:
+      name: "Hobby"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        description: "Name of the user"
+      hobbies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Hobby"
+        description: "List of hobbies the User is involved in"
+    xml:
+      name: "Order"

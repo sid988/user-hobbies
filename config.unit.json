@@ -1,0 +1,9 @@
+{
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/*.spec.js", "**/*.spec.ts"],
+    "transformIgnorePatterns": ["^.+\\.js$"],
+    "roots": ["src"],
+    "reporters": ["default", "jest-junit"],
+    "timers": "fake"
+}
