@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="4.834">
-  <testsuite name="Add user" errors="0" failures="0" skipped="0" timestamp="2021-09-06T11:04:59" time="4.53" tests="1">
-    <testcase classname="Add user tc01 - happy path scenario" name="Add user tc01 - happy path scenario" time="0.005">
-    </testcase>
-  </testsuite>
-</testsuites>
