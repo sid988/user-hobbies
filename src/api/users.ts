@@ -48,7 +48,7 @@ export const addUser = async (req: Request, res: Response, next: NextFunction) =
         res.json({
             id: user.id,
             name: user.name,
-            ref: `${wwwPath}/users/${user.id}`
+            ref: `${wwwPath}/user/${user.id}`
         })
         res.status(200)
         res.end()
@@ -108,7 +108,7 @@ export const findUsers = async (req: Request, res: Response, next: NextFunction)
                 id: user.id,
                 name: user.name,
                 hobbies,
-                ref: `${wwwPath}/users/${user.id}`
+                ref: `${wwwPath}/user/${user.id}`
             })
         }
         res.json(responseData)
@@ -134,7 +134,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
             res.json({
                 id: user.id,
                 name: user.name,
-                ref: `${wwwPath}/users/${user.id}`
+                ref: `${wwwPath}/user/${user.id}`
             })
             res.status(200)
             res.end()

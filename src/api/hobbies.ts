@@ -116,7 +116,7 @@ export const addHobby = async (req: Request, res: Response, next: NextFunction) 
             userId: hobby.userId,
             passionLevel: hobby.passionLevel,
             year: hobby.year,
-            ref: `${wwwPath}/hobbies/${hobby.id}`
+            ref: `${wwwPath}/hobby/${hobby.id}`
         })
         res.status(200)
         res.end()
@@ -171,7 +171,7 @@ export const findHobbies = async (req: Request, res: Response, next: NextFunctio
             userId: hobby.userId,
             passionLevel: hobby.passionLevel,
             year: hobby.year,
-            ref: `${wwwPath}/hobbies/${hobby.id}`
+            ref: `${wwwPath}/hobby/${hobby.id}`
         }))
         res.json(responseData)
         res.status(200)
@@ -200,7 +200,7 @@ export const updateHobby = async (req: Request, res: Response, next: NextFunctio
             userId: { type: 'string' },
             year: { type: 'number', regExp: '^[0-9]{4}$', max: new Date().getFullYear() }
         })
-        if (!await userExists(hobby.userId)) {
+        if (hobby.userId && !await userExists(hobby.userId)) {
             throw new Error(`User ${hobby.userId} does not exist`)
         }
         if (await hobbyExistsForOtherUser(hobby)) {
@@ -217,7 +217,7 @@ export const updateHobby = async (req: Request, res: Response, next: NextFunctio
                 userId: hobby.userId,
                 passionLevel: hobby.passionLevel,
                 year: hobby.year,
-                ref: `${wwwPath}/hobbies/${hobby.id}`
+                ref: `${wwwPath}/hobby/${hobby.id}`
             })
             res.status(200)
             res.end()
